@@ -13,27 +13,6 @@ path:hover {
     fill: gray;
 }
 
-.div-root{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    background: #1B9CFC;
-    width: 100vw;
-    height: 100vh;
-}
-
-.btn{
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
 button {
   background-color: #4CAF50;
   border: none;
@@ -53,14 +32,13 @@ button[disabled]{
   cursor: not-allowed;
 }
 
-
 .top {grid-area: a;}
 .map { grid-area: b; }
 .layer1 { grid-area: c; }
 .layer2 { grid-area: d; }
 .layer3 { grid-area: e; }
 
-.grid-container {
+.div-quiz {
   display: grid;
   grid-gap: 5px;
   padding: 5px;
@@ -76,31 +54,26 @@ button[disabled]{
 .w3-blue,.w3-hover-blue:hover{color:#fff!important;background-color:#2196F3!important}
 .w3-center{text-align:center}
 .w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
-
 .w3-container:after,.w3-container:before{content:"";display:table;clear:both}
 
 .top{
-    background-color: #f1f1f1; 
+    background-color: #f1f1f1;
     text-align: center;
+}
+
+.top, .map, .layer1, .layer2, .layer3{
     border-style: none
 }
 
-.map, .layer1, .layer2, .layer3{
-    border-style: none
-}
-
-#tooltip {
+/*#tooltip {
   background: cornsilk;
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
-}
+}*/
 
-#np_name {
-  background: cornsilk;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 5px;
+#bt_start{
+  background-color: ##4CAF50;
 }
 
 #bt_stop {
@@ -110,6 +83,7 @@ button[disabled]{
 #bt_skip {
   background-color: #008CBA;
 }
+
 #p_label {
   font-size: 32px;
 }

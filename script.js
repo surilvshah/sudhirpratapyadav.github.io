@@ -26,14 +26,14 @@ function init()
 
 function removeLocations()
 {
-    var svg = document.getElementById("imgMap").contentDocument.documentElement;
-    var circles = document.getElementById("imgMap").contentDocument.getElementsByTagName("circle");
+    var svg = document.getElementById("imgMap");
+    var circles = document.getElementById("imgMap").getElementsByTagName("circle");
     var l = circles.length
     for (var i = 0; i < l; i++) {
         svg.removeChild(circles[0]);
     }
     
-    var text_elements = document.getElementById("imgMap").contentDocument.getElementsByTagName("text");
+    var text_elements = document.getElementById("imgMap").getElementsByTagName("text");
     l = text_elements.length
     for (var i = 0; i < l; i++) {
         svg.removeChild(text_elements[0]);
@@ -41,18 +41,18 @@ function removeLocations()
 }
 
 
-function showTooltip(evt) {
-  let tooltip = document.getElementById("tooltip");
-  tooltip.innerHTML = evt.target.getAttributeNS(null, "id");
-  tooltip.style.display = "block";
-  tooltip.style.left = (evt.clientX) + 'px' ;
-  tooltip.style.top = (evt.clientY) + 'px';
-}
+// function showTooltip(evt) {
+//   let tooltip = document.getElementById("tooltip");
+//   tooltip.innerHTML = evt.target.getAttributeNS(null, "id");
+//   tooltip.style.display = "block";
+//   tooltip.style.left = (evt.clientX) + 'px' ;
+//   tooltip.style.top = (evt.clientY) + 'px';
+// }
 
-function hideTooltip() {
-  var tooltip = document.getElementById("tooltip");
-  tooltip.style.display = "none";
-}
+// function hideTooltip() {
+//   var tooltip = document.getElementById("tooltip");
+//   tooltip.style.display = "none";
+// }
 
 function getRamdomArrayIndex(N) {
     var array = [];
@@ -113,12 +113,10 @@ function bt_Start()
         document.getElementById("bt_start").disabled = true;
         document.getElementById("p_label").textContent = "Locate ("+(current_loc+1)+"/"+locations.length+")";
         document.getElementById("p_name").textContent = locations[current_loc][0];
-        
+
         // Use this for local mode
         var elements = document.getElementById("imgMap").getElementsByTagName("path");
 
-        // Use This for online/server mode
-        //var elements = document.getElementById("imgMap").contentDocument.getElementsByTagName("path");
 
         for (var i = 0; i < elements.length; i++) {
             elements[i].setAttributeNS(null, 'fill', COLOR_DEFAULT);
@@ -131,8 +129,8 @@ function bt_Start()
             elements[i].addEventListener("mousedown",  mouseDown);
         }
         
-        var svg = document.getElementById("imgMap").contentDocument.documentElement;
-        var circles = document.getElementById("imgMap").contentDocument.getElementsByTagName("circle");
+        var svg = document.getElementById("imgMap");
+        var circles = document.getElementById("imgMap").getElementsByTagName("circle");
         var l = circles.length
         for (var i = 0; i < l; i++) {
             svg.removeChild(circles[0]);
@@ -163,14 +161,14 @@ function bt_Stop()
         var correct = 0;
         var total_questions = locations.length;
 
-        var elements = document.getElementById("imgMap").contentDocument.getElementsByTagName("path");
+        var elements = document.getElementById("imgMap").getElementsByTagName("path");
         for (var i = 0; i < elements.length; i++)
         {
             elements[i].setAttributeNS(null, 'fill', "lightgray");
         }
         
         removeLocations();
-        var svg = document.getElementById("imgMap").contentDocument.documentElement;
+        var svg = document.getElementById("imgMap");
         for (var i=0;i<locations.length;i++) {
             var cir = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             cir.setAttributeNS(null, 'r', 3);
@@ -225,7 +223,7 @@ function bt_Stop()
         
         flag_started = false;
         flag_confirmed = false;
-        hideTooltip();
+        //hideTooltip();
     }
 }
 
@@ -242,7 +240,7 @@ function bt_Skip()
         {
             document.getElementById("p_label").textContent = "Locate ("+(current_loc+1)+"/"+locations.length+")";
             document.getElementById("p_name").textContent = locations[current_loc][0];
-            var elements = document.getElementById("imgMap").contentDocument.getElementsByTagName("path");
+            var elements = document.getElementById("imgMap").getElementsByTagName("path");
             for (var i = 0; i < elements.length; i++)
             {
                 elements[i].setAttributeNS(null, 'fill', COLOR_DEFAULT);
@@ -260,7 +258,7 @@ function mouseOver(e){
     {
         e.target.setAttributeNS(null, 'fill', COLOR_SELECT);
         e.target.setAttributeNS(null, 'stroke-width', SW_S);
-        showTooltip(e);
+        //showTooltip(e);
     }
 }
 
@@ -269,14 +267,14 @@ function mouseOut(e){
     {
         e.target.setAttributeNS(null, 'fill', COLOR_DEFAULT);
         e.target.setAttributeNS(null, 'stroke-width', SW_D);
-        hideTooltip();
+        //hideTooltip();
     }
 }
 
 function mouseMove(e){
     if(flag_started && !flag_confirmed)
     {
-        showTooltip(e);
+        //showTooltip(e);
     }
 }
 
@@ -286,7 +284,7 @@ function mouseDown(e){
         if(flag_confirmed)
         {
             flag_confirmed = false;
-            showTooltip(e);
+            //showTooltip(e);
             document.getElementById("bt_skip").textContent = "Skip";
             current_loc = current_loc+1;
             removeLocations();
@@ -294,7 +292,7 @@ function mouseDown(e){
             {
                 document.getElementById("p_label").textContent = "Locate ("+(current_loc+1)+"/"+locations.length+")";
                 document.getElementById("p_name").textContent = locations[current_loc][0];
-                var elements = document.getElementById("imgMap").contentDocument.getElementsByTagName("path");
+                var elements = document.getElementById("imgMap").getElementsByTagName("path");
                 for (var i = 0; i < elements.length; i++)
                 {
                     elements[i].setAttributeNS(null, 'fill', COLOR_DEFAULT);
@@ -308,11 +306,11 @@ function mouseDown(e){
         }
         else
         {
-            hideTooltip();
+            //hideTooltip();
             flag_confirmed = true;
             document.getElementById("bt_skip").textContent = "Next";
             
-            var svg = document.getElementById("imgMap").contentDocument.documentElement;
+            var svg = document.getElementById("imgMap");
             var cir = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             cir.setAttributeNS(null, 'r', 3);
             cir.setAttributeNS(null, 'stroke-width', 3);
@@ -344,7 +342,7 @@ function mouseDown(e){
             else
             {
                 e.target.setAttributeNS(null, 'fill', "Red");
-                document.getElementById("imgMap").contentDocument.getElementById(locations[current_loc][3]).setAttributeNS(null, 'fill', "Green");
+                document.getElementById("imgMap").getElementById(locations[current_loc][3]).setAttributeNS(null, 'fill', "Green");
                 answer_check[current_loc] = -1;
             }
             
